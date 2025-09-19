@@ -1,18 +1,22 @@
 # 🌍 Cross Branch Feature Fusion Decoder for Consistency Regularization-based Semi-Supervised Change Detection
 
-Welcome to the official repository of our paper "[*Cross Branch Feature Fusion Decoder for Consistency Regularization-based Semi-Supervised Change Detection*]([https://ieeexplore.ieee.org/document/10965597](https://ieeexplore.ieee.org/abstract/document/10446862))"! Our paper has been accepted by IEEE ICASSP 2024.
+Welcome to the official repository of our paper "[*Cross Branch Feature Fusion Decoder for Consistency Regularization-based Semi-Supervised Change Detection*](https://ieeexplore.ieee.org/abstract/document/10446862)"! Our paper has been accepted by IEEE ICASSP 2024.
 
-Our method introduces a novel CBFFBlock (Cross-Branch Feature Fusion Block) that synergistically combines CNN and Transformer features under consistency regularization, achieving unprecedented performance in semi-supervised change detection with minimal labeled data.
 
----
+## 🔍 Introduction
 
-## 🏗️ Framework Overview
+Semi-supervised change detection (SSCD) utilizes partially labeled data and a large amount of unlabeled data to detect changes. However, the transformer-based SSCD network does not perform as well as the convolution-based SSCD network due to the lack of labeled data. To overcome this limitation, we introduce a new decoder called Cross Branch Feature Fusion (CBFF), which combines the strengths of both local convolutional branch and global transformer branch. The convolutional branch is easy to learn and can produce high-quality features with a small amount of labeled data. The transformer branch, on the other hand, can extract global context features but is hard to learn without a lot of labeled data. Using CBFF, we build our SSCD model based on a strong-to-weak consistency strategy. Through comprehensive experiments on WHU-CD and LEVIR-CD datasets, we have demonstrated the superiority of our method over seven state-of-the-art SSCD methods.
 
+
+## 🏗️ Framework
+
+Our CD network consists of a difference feature generator, a bottleneck, three cross-branch feature fusion modules, and two prediction heads.
 <div align="left">
   <img src="figs/network.png" alt="SSCD Network Architecture" width="500">
   <p><em>Network architecture: Dual-input ResNet backbone → Feature difference → CBFFBlocks → Dual-head classification.</em></p>
 </div>
 
+Our SSCD training framework consists of supervised training part and unsupervised training part utilizing consistency regularization.
 <div align="left">
   <img src="figs/SSCDframework.png" alt="SSCD Training Framework" width="500">
   <p><em>Semi-supervised training framework with supervised CE loss and unsupervised consistency regularization.</em></p>
@@ -67,7 +71,8 @@ Qualitative comparison on selected samples from **WHU-CD** and **LEVIR-CD** (5% 
   <p><em>Detection results of different methods under 5% labeled WHU-CD and LEVIR-CD.</em></p>
 </div>
 
-## Usage
+
+## Getting Started
 
 ### Installation
 
@@ -87,6 +92,34 @@ Download the pre-trained ResNet-50 checkpoint: [ResNet-50](https://drive.google.
 ├── ./pretrained
     ├── resnet50.pth
 ```
+
+### Dataset
+
+- WHU-CD: [imageA, imageB, and label](https://www.dropbox.com/s/r76a00jcxp5d3hl/WHU-CD-256.zip?dl=0)
+- LEVIR-CD: [imageA, imageB, and label](https://www.dropbox.com/s/18fb5jo0npu5evm/LEVIR-CD256.zip?dl=0)
+
+Please modify your dataset path in configuration files.
+
+```
+├── [Your WHU-CD/LEVIR-CD Path]
+    ├── A
+    ├── B
+    └── label
+```
+
+## Usage
+
+### Training and Testing
+
+```bash
+cd CBFF
+bash scripts/train.sh
+bash scripts/test.sh
+```
+
+To train on other datasets or splits, please modify ``dataset`` and ``split`` in ``scripts/train.sh``.
+
+To train the supervised baseline, please modify the ``method`` from ``'unimatch'`` to ``'supervised'`` in ``scripts/train.sh``. 
 
 
 
