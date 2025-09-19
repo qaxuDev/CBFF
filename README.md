@@ -10,17 +10,23 @@ Semi-supervised change detection (SSCD) utilizes partially labeled data and a la
 
 ## 🏗️ Framework
 
-Our CD network consists of a difference feature generator, a bottleneck, three cross-branch feature fusion modules, and two prediction heads.
-<div align="left">
-  <img src="figs/network.png" alt="SSCD Network Architecture" width="500">
-  <p><em>Network architecture: Dual-input ResNet backbone → Feature difference → CBFFBlocks → Dual-head classification.</em></p>
+
+<div align="center">
+  <img src="figs/network.png" alt="Network Architecture: CBFF Decoder Structure" width="480">
+  <img src="figs/SSCDframework.png" alt="Training Framework: Strong-to-Weak Consistency" width="480">
 </div>
 
-Our SSCD training framework consists of supervised training part and unsupervised training part utilizing consistency regularization.
-<div align="left">
-  <img src="figs/SSCDframework.png" alt="SSCD Training Framework" width="500">
-  <p><em>Semi-supervised training framework with supervised CE loss and unsupervised consistency regularization.</em></p>
-</div>
+<p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">
+  <em><strong>Left:</strong> CBFF decoder fuses CNN and Transformer features at each level.<br>
+  <strong>Right:</strong> Training uses supervised CE loss on labeled data and unsupervised consistency loss on unlabeled data.</em>
+</p>
+
+Our change detection network follows a structured pipeline:
+
+Difference Feature Generator: Extracts residual features between two input images using a Siamese ResNet backbone, then refines them with convolutional blocks.
+Bottleneck: Applies ASPP to the deepest feature map (C4) to capture multi-scale contextual information.
+Cross-Branch Feature Fusion (CBFF) Modules: Three hierarchical fusion blocks that integrate local CNN features and global Transformer context at each resolution level — enabling robust learning even with minimal labeled data.
+Dual Prediction Heads: Two parallel classifiers output change maps from the final fused features, enabling consistency regularization during training.
 
 ---
 
@@ -70,6 +76,9 @@ Qualitative comparison on selected samples from **WHU-CD** and **LEVIR-CD** (5% 
   <img src="figs/results.png" alt="Visualization Comparison: Input, GT, UniMatch, Ours" width="800">
   <p><em>Detection results of different methods under 5% labeled WHU-CD and LEVIR-CD.</em></p>
 </div>
+
+
+---
 
 
 ## Getting Started
@@ -122,6 +131,7 @@ To train on other datasets or splits, please modify ``dataset`` and ``split`` in
 To train the supervised baseline, please modify the ``method`` from ``'unimatch'`` to ``'supervised'`` in ``scripts/train.sh``. 
 
 
+---
 
 ## Citation
 
