@@ -2,7 +2,7 @@
 
 Welcome to the official repository of our paper "[*Cross Branch Feature Fusion Decoder for Consistency Regularization-based Semi-Supervised Change Detection*]([https://ieeexplore.ieee.org/document/10965597](https://ieeexplore.ieee.org/abstract/document/10446862))"! Our paper has been accepted by IEEE ICASSP 2024.
 
-###Framework Overview
+### Framework Overview
 
 <div align="center">
 <img src="figs/network.png" alt="CD network" width="800">
@@ -42,13 +42,14 @@ Results reported under semi-supervised settings with varying labeled data ratios
 | **SemiPTCD**~\cite{mao2023semi} | 76.9 | 98.95 | 80.8 | 99.17 | 76.6 | 98.65 | 77.2 | 98.74 |
 | **UniMatch**~\cite{yang2023revisiting} | 81.2 | 99.18 | 83.7 | 99.29 | 82.9 | 99.07 | 83.0 | 99.08 |
 | **Ours (Proposed)** | **83.6** | **99.29** | **86.5** | **99.43** | **83.2** | **99.09** | **83.9** | **99.12** |
+
 ✅ Our method achieves state-of-the-art performance across all settings, outperforming existing semi-supervised change detection methods on both WHU-CD and LEVIR-CD datasets. 
 
 ### Visualization Results
 Below are qualitative comparisons on selected samples from WHU-CD and LEVIR-CD (5% labeled setting):
 
 <div align="center">
-<img src="figs/results.png" alt="Visualization Comparison: Input, GT, UniMatch, Ours" width="1200">
+<img src="figs/results.png" alt="Visualization Comparison: Input, GT, UniMatch, Ours" width="400">
 <p><em> Detection results of different methods on WHU-CD and LEVIR-CD at the 5\% labeled training ratio. </em></p>
 </div>
 
