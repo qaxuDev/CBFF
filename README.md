@@ -1,24 +1,32 @@
-## Introduction
+🌍 SSCD: Cross Branch Feature Fusion for Semi-Supervised Change Detection
 
 Welcome to the official repository of our paper "[*Cross Branch Feature Fusion Decoder for Consistency Regularization-based Semi-Supervised Change Detection*]([https://ieeexplore.ieee.org/document/10965597](https://ieeexplore.ieee.org/abstract/document/10446862))"! Our paper has been accepted by IEEE ICASSP 2024.
 
+Our method introduces a novel CBFFBlock (Cross-Branch Feature Fusion Block) that synergistically combines CNN and Transformer features under consistency regularization, achieving unprecedented performance in semi-supervised change detection with minimal labeled data.
 ### Framework Overview
 
+🏗️ Framework Overview
+Our model leverages dual-path feature fusion and consistency learning to exploit unlabeled data effectively.
+
+Architecture Diagram
 <div align="center">
-<img src="figs/network.png" alt="CD network" width="500">
-<p><em>The architecture of our change detection network. Features from two images are compared, fused via CBFFBlocks, and classified by dual heads with consistency regularization.</em></p>
+<img src="figs/network.png" alt="SSCD Network Architecture" width="500">
+<p><em>Network architecture: Dual-input ResNet backbone → Feature difference → CBFFBlocks → Dual-head classification.</em></p>
 </div>
 
+Training Framework
 <div align="center">
-<img src="figs/SSCDframework.png" alt="SSCD Framework" width="500">
-<p><em>The framework of consistency regularization-based semi-supervised change detection method.</em></p>
+<img src="figs/SSCDframework.png" alt="SSCD Training Framework" width="500">
+<p><em>Semi-supervised training framework with supervised CE loss and unsupervised consistency regularization.</em></p>
 </div>
 
 ## Results
-### 📊 Quantitative Results on WHU-CD and LEVIR-CD
 
-The two numbers in each cell denote the **changed-class IoU** and **overall accuracy (OA)**, respectively.
-Results reported under semi-supervised settings with varying labeled data ratios (5%, 10%, 20%, 40%). The highest scores are marked in \textbf{bold}.
+📊 Quantitative Results
+The two numbers in each cell denote the changed-class IoU and overall accuracy (OA), respectively.
+Results are reported under semi-supervised settings with varying labeled ratios: 5%, 10%, 20%, 40%.
+Bold values indicate SOTA performance.
+
 #### 🔹 LEVIR-CD
 
 | Method          | 5%        | 10%       | 20%       | 40%       |
@@ -47,12 +55,13 @@ Results reported under semi-supervised settings with varying labeled data ratios
 
 ✅ Our method achieves state-of-the-art performance across all settings, outperforming existing semi-supervised change detection methods on both WHU-CD and LEVIR-CD datasets. 
 
-### Visualization Results
-Below are qualitative comparisons on selected samples from WHU-CD and LEVIR-CD (5% labeled setting):
+
+🖼️ Visualization Results
+Qualitative comparison on selected samples from WHU-CD and LEVIR-CD (5% labeled training ratio):
 
 <div align="center">
 <img src="figs/results.png" alt="Visualization Comparison: Input, GT, UniMatch, Ours" width="800">
-<p><em> Detection results of different methods on WHU-CD and LEVIR-CD at the 5\% labeled training ratio. </em></p>
+<p><em>Detection results of different methods under 5% labeling. Our method produces more complete, accurate, and spatially coherent change maps with fewer false positives.</em></p>
 </div>
 
 
@@ -70,7 +79,7 @@ pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 -f https://download.py
 
 ### Pretrained Backbone
 
-[ResNet-50](https://drive.google.com/file/d/1mqUrqFvTQ0k5QEotk4oiOFyP6B9dVZXS/view?usp=sharing).
+Download the pre-trained ResNet-50 checkpoint: [ResNet-50](https://drive.google.com/file/d/1mqUrqFvTQ0k5QEotk4oiOFyP6B9dVZXS/view?usp=sharing).
 
 ```
 ├── ./pretrained
@@ -95,6 +104,6 @@ If you find this project useful, please consider citing:
 ```
 
 
-## Acknowledgement
+❤️ Acknowledgements
 
 This project is based on [SemiCD](https://github.com/wgcban/SemiCD) and [UniMatch](https://github.com/LiheYoung/UniMatch). Thank you very much for their outstanding work.
