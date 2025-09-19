@@ -56,7 +56,24 @@ Below are qualitative comparisons on selected samples from WHU-CD and LEVIR-CD (
 
 ## Usage
 
+### Installation
 
+```bash
+cd CBFF
+conda create -n pytorch12 python=3.10.4
+conda activate pytorch12
+pip install -r requirements.txt
+pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 -f https://download.pytorch.org/whl/torch_stable.html
+```
+
+### Pretrained Backbone
+
+[ResNet-50](https://drive.google.com/file/d/1mqUrqFvTQ0k5QEotk4oiOFyP6B9dVZXS/view?usp=sharing).
+
+```
+├── ./pretrained
+    ├── resnet50.pth
+```
 
 
 
