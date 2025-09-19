@@ -5,28 +5,43 @@ Welcome to the official repository of our paper "[*Cross Branch Feature Fusion D
 ###Framework Overview
 
 <div align="center">
-<img src="figs/framework.png" alt="SSCD Framework Diagram" width="800">
-<p><em>Figure: SSCD framework. Features from two images are compared, fused via CBFFBlocks, and classified by dual heads with consistency regularization.</em></p>
+<img src="figs/network.png" alt="CD network" width="800">
+<p><em>The architecture of our change detection network. Features from two images are compared, fused via CBFFBlocks, and classified by dual heads with consistency regularization.</em></p>
+</div>
+
+<div align="center">
+<img src="figs/SSCDframework.png" alt="SSCD Framework" width="800">
+<p><em>The framework of consistency regularization-based semi-supervised change detection method.</em></p>
 </div>
 
 ## Results
-###Quantitative Comparison on WHU-CD and LEVIR-CD
-The highest scores are marked in bold.
+### Quantitative Comparison on WHU-CD and LEVIR-CD
+Quantitative comparison of different methods on WHU-CD and LEVIR-CD. The highest scores are marked in \textbf{bold}.
 Results reported under semi-supervised settings with varying labeled data ratios (5%, 10%, 20%, 40%).
 
-| Method | \multicolumn{8}{c|}{WHU-CD} | \multicolumn{8}{c}{LEVIR-CD} |
-|--------|------------------|------------------|------------------|------------------|------------------|------------------|------------------|------------------|------------------|------------------|------------------|------------------|------------------|------------------|------------------|------------------|
-| | IoU | OA | IoU | OA | IoU | OA | IoU | OA | IoU | OA | IoU | OA | IoU | OA | IoU | OA |
-| | 5% | 10% | 20% | 40% | 5% | 10% | 20% | 40% | 5% | 10% | 20% | 40% | 5% | 10% | 20% | 40% |
-| AdvEnt~\cite{vu2019advent} | 57.7 | 60.5 | 69.5 | 76.0 | 97.87 | 97.79 | 98.50 | 98.91 | 67.1 | 70.8 | 74.3 | 75.9 | 98.15 | 98.38 | 98.59 | 98.67 |
-| s4GAN~\cite{mittal2019semi} | 57.3 | 58.0 | 67.0 | 74.3 | 97.94 | 97.81 | 98.41 | 98.85 | 66.6 | 72.2 | 75.1 | 76.2 | 98.16 | 98.48 | 98.63 | 98.68 |
-| SemiCDNet~\cite{peng2020semicdnet} | 56.2 | 60.3 | 69.1 | 70.5 | 97.78 | 98.02 | 98.47 | 98.59 | 67.4 | 71.5 | 74.9 | 75.5 | 98.11 | 98.42 | 98.58 | 98.63 |
-| SemiCD~\cite{bandara2022revisiting} | 65.8 | 68.0 | 74.6 | 78.0 | 98.37 | 98.45 | 98.83 | 99.01 | 74.2 | 77.1 | 77.9 | 79.0 | 98.59 | 98.74 | 98.79 | 98.84 |
-| RC-CD~\cite{wang2022reliable} | 57.7 | 65.4 | 74.3 | 77.6 | 97.94 | 98.45 | 98.89 | 99.02 | 67.9 | 72.3 | 75.6 | 77.2 | 98.09 | 98.40 | 98.60 | 98.70 |
-| SemiPTCD~\cite{mao2023semi} | 74.1 | 74.2 | 76.9 | 80.8 | 98.85 | 98.86 | 98.95 | 99.17 | 71.2 | 75.9 | 76.6 | 77.2 | 98.39 | 98.65 | 98.65 | 98.74 |
-| UniMatch~\cite{yang2023revisiting} | 78.7 | 79.6 | 81.2 | 83.7 | 99.11 | 99.11 | 99.18 | 99.29 | 82.1 | 82.8 | 82.9 | 83.0 | 99.03 | 99.07 | 99.07 | 99.08 |
-| Ours (Proposed) | 81.0 | 81.1 | 83.6 | 86.5 | 99.20 | 99.18 | 99.29 | 99.43 | 82.6 | 83.2 | 83.2 | 83.9 | 99.05 | 99.08 | 99.09 | 99.12 |
+| Method | WHU-CD |  |  |  | LEVIR-CD |  |  |  |
+|--------|--------|----|----|----|----------|----|----|----|
+|        | IoU 5% | OA 5% | IoU 10% | OA 10% | IoU 5% | OA 5% | IoU 10% | OA 10% |
+| **AdvEnt**~\cite{vu2019advent} | 57.7 | 97.87 | 60.5 | 97.79 | 67.1 | 98.15 | 70.8 | 98.38 |
+| **s4GAN**~\cite{mittal2019semi} | 57.3 | 97.94 | 58.0 | 97.81 | 66.6 | 98.16 | 72.2 | 98.48 |
+| **SemiCDNet**~\cite{peng2020semicdnet} | 56.2 | 97.78 | 60.3 | 98.02 | 67.4 | 98.11 | 71.5 | 98.42 |
+| **SemiCD**~\cite{bandara2022revisiting} | 65.8 | 98.37 | 68.0 | 98.45 | 74.2 | 98.59 | 77.1 | 98.74 |
+| **RC-CD**~\cite{wang2022reliable} | 57.7 | 97.94 | 65.4 | 98.45 | 67.9 | 98.09 | 72.3 | 98.40 |
+| **SemiPTCD**~\cite{mao2023semi} | 74.1 | 98.85 | 74.2 | 98.86 | 71.2 | 98.39 | 75.9 | 98.65 |
+| **UniMatch**~\cite{yang2023revisiting} | 78.7 | 99.11 | 79.6 | 99.11 | 82.1 | 99.03 | 82.8 | 99.07 |
+| **Ours (Proposed)** | **81.0** | **99.20** | **81.1** | **99.18** | **82.6** | **99.05** | **83.2** | **99.08** |
 
+| Method | WHU-CD |  |  |  | LEVIR-CD |  |  |  |
+|--------|--------|----|----|----|----------|----|----|----|
+|        | IoU 20% | OA 20% | IoU 40% | OA 40% | IoU 20% | OA 20% | IoU 40% | OA 40% |
+| **AdvEnt**~\cite{vu2019advent} | 69.5 | 98.50 | 76.0 | 98.91 | 74.3 | 98.59 | 75.9 | 98.67 |
+| **s4GAN**~\cite{mittal2019semi} | 67.0 | 98.41 | 74.3 | 98.85 | 75.1 | 98.63 | 76.2 | 98.68 |
+| **SemiCDNet**~\cite{peng2020semicdnet} | 69.1 | 98.47 | 70.5 | 98.59 | 74.9 | 98.58 | 75.5 | 98.63 |
+| **SemiCD**~\cite{bandara2022revisiting} | 74.6 | 98.83 | 78.0 | 99.01 | 77.9 | 98.79 | 79.0 | 98.84 |
+| **RC-CD**~\cite{wang2022reliable} | 74.3 | 98.89 | 77.6 | 99.02 | 75.6 | 98.60 | 77.2 | 98.70 |
+| **SemiPTCD**~\cite{mao2023semi} | 76.9 | 98.95 | 80.8 | 99.17 | 76.6 | 98.65 | 77.2 | 98.74 |
+| **UniMatch**~\cite{yang2023revisiting} | 81.2 | 99.18 | 83.7 | 99.29 | 82.9 | 99.07 | 83.0 | 99.08 |
+| **Ours (Proposed)** | **83.6** | **99.29** | **86.5** | **99.43** | **83.2** | **99.09** | **83.9** | **99.12** |
 ✅ Our method achieves state-of-the-art performance across all settings, outperforming existing semi-supervised change detection methods on both WHU-CD and LEVIR-CD datasets. 
 
 ### Visualization Results
@@ -34,7 +49,7 @@ Below are qualitative comparisons on selected samples from WHU-CD and LEVIR-CD (
 
 <div align="center">
 <img src="figs/results.png" alt="Visualization Comparison: Input, GT, UniMatch, Ours" width="1200">
-<p><em>Figure: Visual comparison of change detection results. </em></p>
+<p><em> Detection results of different methods on WHU-CD and LEVIR-CD at the 5\% labeled training ratio. </em></p>
 </div>
 
 
